@@ -1,3 +1,3 @@
 #pragma once
-#include "Application.h"
-#include "EntryPoint.h"
+#include "Engine/Core/Application.h"
+#include "Engine/Core/EntryPoint.h"
