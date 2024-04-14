@@ -35,4 +35,4 @@
 .idea
 
 # Debug
-/cmake-build-debug
+/BezdarEngine/cmake-build-debug/
