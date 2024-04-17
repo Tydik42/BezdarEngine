@@ -47,7 +47,9 @@ jobs:
     - name: Restore from cache and setup vcpkg executable and data files.
       uses: lukka/run-vcpkg@v11
       with:
-        vcpkgJsonGlob: 'vcpkg.json'
+        vcpkgArguments: '@${{ github.workspace }}/BezdarEngine/vcpkg.json'
+        vcpkgDirectory: '${{ runner.workspace }}/BezdarEngine/vendor/vcpkg/'
+        appendedCacheKey: ${{ hashFiles(env.vcpkgResponseFile) }}
 
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/BezdarEngine -DCMAKE_BUILD_TYPE=Release
