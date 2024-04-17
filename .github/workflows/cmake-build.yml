@@ -48,11 +48,11 @@ jobs:
       uses: lukka/run-vcpkg@v11
       with:
         vcpkgArguments: '@${{ github.workspace }}/BezdarEngine/vcpkg.json'
-        vcpkgDirectory: '${{ runner.workspace }}/BezdarEngine/vendor/vcpkg/'
+        vcpkgDirectory: '${{ runner.workspace }}/BezdarEngine/Vendor/vcpkg/'
         appendedCacheKey: ${{ hashFiles(env.vcpkgResponseFile) }}
 
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/BezdarEngine -DCMAKE_BUILD_TYPE=Release
+      run: cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/BezdarEngine -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}/BezdarEngine/Vendor/vcpkg/scripts/buildsystems/vcpkg.cmake
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config Release
