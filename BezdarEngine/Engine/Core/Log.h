@@ -20,7 +20,7 @@ private:
     static std::shared_ptr<spdlog::logger> s_CoreLogger;
     static std::shared_ptr<spdlog::logger> s_ClientLogger;
 };
-}
+} // namespace BZEngine
 
 
 // Core log macros
@@ -31,8 +31,8 @@ private:
 #define BZ_CORE_CRITICAL(...) ::BZEngine::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
-#define BZ_TRACE(...)         ::Hazel::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define BZ_INFO(...)          ::Hazel::Log::GetClientLogger()->info(__VA_ARGS__)
-#define BZ_WARN(...)          ::Hazel::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define BZ_ERROR(...)         ::Hazel::Log::GetClientLogger()->error(__VA_ARGS__)
-#define BZ_CRITICAL(...)      ::Hazel::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define BZ_TRACE(...)         ::BZEngine::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define BZ_INFO(...)          ::BZEngine::Log::GetClientLogger()->info(__VA_ARGS__)
+#define BZ_WARN(...)          ::BZEngine::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define BZ_ERROR(...)         ::BZEngine::Log::GetClientLogger()->error(__VA_ARGS__)
+#define BZ_CRITICAL(...)      ::BZEngine::Log::GetClientLogger()->critical(__VA_ARGS__)
