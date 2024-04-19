@@ -19,6 +19,10 @@ set(CMAKE_CXX_STANDARD 17)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -pedantic)
 
 
+# PCH
+target_precompile_headers(${PROJECT_NAME} PRIVATE Engine/pch.h)
+
+
 # Vcpkg
 set(CMAKE_TOOLCHAIN_FILE "Vendor/vcpkg/scripts/buildsystems/vcpkg.cmake"
         CACHE STRING "Vcpkg toolchain file")
