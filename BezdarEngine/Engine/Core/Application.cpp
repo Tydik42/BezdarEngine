@@ -5,7 +5,7 @@ namespace BZEngine
 {
 Application::Application()
 {
-
+    m_Window = std::unique_ptr<IWindow>(IWindow::Create());
 }
 
 Application::~Application()
@@ -15,15 +15,9 @@ Application::~Application()
 
 void Application::Run()
 {
-    WindowResizeEvent e(1280, 720);
-    if (e.IsInCategory(EventCategoryApplication))
+    while (m_Running)
     {
-        BZ_TRACE(e.ToString());
+        m_Window->OnUpdate();
     }
-    if (e.IsInCategory(EventCategoryInput))
-    {
-        BZ_TRACE(e.ToString());
-    }
-    while (true);
 }
 } // namespace BZEngine
