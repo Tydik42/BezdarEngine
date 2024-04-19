@@ -1,5 +1,8 @@
 #pragma once
 
+#include "pch.h"
+#include "Events/ApplicationEvent.h"
+
 namespace BZEngine
 {
 class Application

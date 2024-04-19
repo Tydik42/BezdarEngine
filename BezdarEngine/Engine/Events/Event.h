@@ -1,9 +1,6 @@
 #pragma once
 
-#include "Core/Base.h"
-#include <string>
-#include <sstream>
-#include <functional>
+#include "pch.h"
 
 namespace BZEngine
 {
