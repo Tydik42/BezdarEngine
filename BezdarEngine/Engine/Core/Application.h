@@ -16,6 +16,8 @@ public:
 
     void Run();
 
+    void OnEvent(BZEngine::Event& e);
+
 private:
     std::unique_ptr<IWindow> m_Window;
     bool m_Running = true;

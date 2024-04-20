@@ -1,6 +1,8 @@
 #include "SDLWindow.h"
 #include "Core/Asserts.h"
 #include "Events/ApplicationEvent.h"
+#include "Events/KeyEvent.h"
+#include "Events/MouseEvent.h"
 
 namespace BZEngine {
 
@@ -59,7 +61,97 @@ void SDLWindow::OnUpdate()
     SDL_Event event;
     while (SDL_PollEvent(&event))
     {
-        // Handle your events here
+        switch (event.type)
+        {
+            case SDL_WINDOWEVENT:
+                switch (event.window.event)
+                {
+                    case SDL_WINDOWEVENT_RESIZED:
+                    {
+                        int newWidth = event.window.data1;
+                        int newHeight = event.window.data2;
+                        m_Data.Width = newWidth;
+                        m_Data.Height = newHeight;
+
+                        WindowResizeEvent resizeEvent(newWidth, newHeight);
+                        m_Data.EventCallback(resizeEvent);
+                        break;
+                    }
+                    case SDL_WINDOWEVENT_CLOSE:
+                    {
+                        WindowCloseEvent closeEvent;
+                        m_Data.EventCallback(closeEvent);
+                        break;
+                    }
+                }
+                break;
+            case SDL_KEYDOWN:
+            case SDL_KEYUP:
+            {
+                int key = event.key.keysym.sym;
+                switch (event.key.state)
+                {
+                    case SDL_PRESSED:
+                    {
+                        KeyPressedEvent keyPressedEvent(key, event.key.repeat);
+                        m_Data.EventCallback(keyPressedEvent);
+                        break;
+                    }
+                    case SDL_RELEASED:
+                    {
+                        KeyReleasedEvent keyReleasedEvent(key);
+                        m_Data.EventCallback(keyReleasedEvent);
+                        break;
+                    }
+                }
+                break;
+            }
+            case SDL_TEXTINPUT:
+            {
+                unsigned int keycode = event.text.text[0];
+                KeyTypedEvent keyTypedEvent(keycode);
+                m_Data.EventCallback(keyTypedEvent);
+                break;
+            }
+            case SDL_MOUSEBUTTONDOWN:
+            case SDL_MOUSEBUTTONUP:
+            {
+                int button = event.button.button;
+                switch (event.button.state)
+                {
+                    case SDL_PRESSED:
+                    {
+                        MouseButtonPressedEvent mouseButtonPressedEvent(button);
+                        m_Data.EventCallback(mouseButtonPressedEvent);
+                        break;
+                    }
+                    case SDL_RELEASED:
+                    {
+                        MouseButtonReleasedEvent mouseButtonReleasedEvent(button);
+                        m_Data.EventCallback(mouseButtonReleasedEvent);
+                        break;
+                    }
+                }
+                break;
+            }
+            case SDL_MOUSEWHEEL:
+            {
+                float xOffset = event.wheel.x;
+                float yOffset = event.wheel.y;
+                MouseScrolledEvent mouseScrolledEvent(xOffset, yOffset);
+                m_Data.EventCallback(mouseScrolledEvent);
+                break;
+            }
+            case SDL_MOUSEMOTION:
+            {
+                float xPos = event.motion.x;
+                float yPos = event.motion.y;
+                MouseMovedEvent mouseMovedEvent(xPos, yPos);
+                m_Data.EventCallback(mouseMovedEvent);
+                break;
+            }
+                // Handle other events...
+        }
     }
     SDL_GL_SwapWindow(m_Window);
 }
