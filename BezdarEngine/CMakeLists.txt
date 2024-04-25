@@ -31,7 +31,8 @@ if(TARGET Microsoft::DirectX12-Agility)
             )
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE d3d12.lib dxgi.lib d3dcompiler.lib dxguid.lib)
+find_library(D3D12_LIB d3d12)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${D3D12_LIB})
 find_package(directx-headers CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE Microsoft::DirectX-Headers)
 
