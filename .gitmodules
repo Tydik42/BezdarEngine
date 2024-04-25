@@ -1,6 +1,6 @@
 [submodule "BezdarEngine/vendor/vcpkg"]
 	path = BezdarEngine/vendor/vcpkg
 	url = https://github.com/microsoft/vcpkg
-[submodule "BezdarEngine/Vendor/imgui"]
-	path = BezdarEngine/Vendor/imgui
-	url = https://github.com/ocornut/imgui.git
+[submodule "BezdarEngine/vendor/imgui"]
+	path = BezdarEngine/vendor/imgui
+	url = https://github.com/ocornut/imgui
