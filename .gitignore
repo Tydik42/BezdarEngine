@@ -36,3 +36,4 @@
 
 # Debug
 /BezdarEngine/cmake-build-debug/
+/BezdarEngine/cmake-build-debug-event-trace/
