@@ -9,7 +9,13 @@
     "name" : "sdl2",
     "version>=" : "2.30.1"
   }, {
-    "name" : "imgui",
-    "version>=" : "1.90.2"
+    "name" : "directx12-agility",
+    "version>=" : "1.613.0"
+  }, {
+    "name" : "directx-headers",
+    "version>=" : "1.613.0"
+  }, {
+    "name" : "d3d12-memory-allocator",
+    "version>=" : "2.0.1"
   } ]
 }
