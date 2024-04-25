@@ -51,8 +51,9 @@ jobs:
         vcpkgDirectory: '${{ runner.workspace }}/BezdarEngine/Vendor/vcpkg/'
         appendedCacheKey: ${{ hashFiles(env.vcpkgResponseFile) }}
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Install Windows 10 SDK
+      run: |
+        choco install windows-sdk-10-version-2004-all --no-progress
 
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/BezdarEngine -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}/BezdarEngine/Vendor/vcpkg/scripts/buildsystems/vcpkg.cmake
