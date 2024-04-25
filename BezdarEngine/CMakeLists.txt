@@ -114,7 +114,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 
 # Set compiler options
-target_compile_options(${PROJECT_NAME} PRIVATE -Wall -pedantic)
+#target_compile_options(${PROJECT_NAME} PRIVATE -Wall -pedantic)
 
 
 # PCH
