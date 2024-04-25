@@ -36,17 +36,12 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${D3D12_LIB})
 find_package(directx-headers CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE Microsoft::DirectX-Headers)
 
-
-
-file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/Engine/*.cpp")
-target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
-
 find_library(D3DCOMPILER_LIB d3dcompiler)
 target_link_libraries(${PROJECT_NAME} PRIVATE ${D3DCOMPILER_LIB})
 
 
 #imgui
-set(IMGUI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Vendor/imgui)
+set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/Vendor/imgui)
 add_library(imgui
         ${IMGUI_DIR}/imgui.cpp
         ${IMGUI_DIR}/imgui_draw.cpp
@@ -61,6 +56,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE imgui)
 # Include directories
 include_directories(${CMAKE_SOURCE_DIR}/Engine)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/Engine)
+
+
+file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/Engine/*.cpp")
+target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
 
 
 # Set C++ standard
