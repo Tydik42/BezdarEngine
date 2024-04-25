@@ -22,13 +22,6 @@ target_link_libraries(${PROJECT_NAME}
 
 
 # DirectX12
-find_package(directx-headers CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE Microsoft::DirectX-Headers)
-
-find_package(directx-headers CONFIG REQUIRED)
-find_package(directx12-agility CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE Microsoft::DirectX-Headers Microsoft::DirectX-Guids Microsoft::DirectX12-Agility)
-
 if(TARGET Microsoft::DirectX12-Agility)
     file(MAKE_DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/D3D12")
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
@@ -37,6 +30,15 @@ if(TARGET Microsoft::DirectX12-Agility)
             COMMAND_EXPAND_LISTS
             )
 endif()
+
+target_link_libraries(${PROJECT_NAME} PRIVATE d3d12.lib dxgi.lib d3dcompiler.lib dxguid.lib)
+find_package(directx-headers CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE Microsoft::DirectX-Headers)
+
+find_package(directx-headers CONFIG REQUIRED)
+find_package(directx12-agility CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE Microsoft::DirectX-Headers Microsoft::DirectX-Guids Microsoft::DirectX12-Agility)
+
 
 file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/Engine/*.cpp")
 target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
