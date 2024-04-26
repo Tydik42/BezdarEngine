@@ -15,12 +15,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt-header-only)
 
 find_package(SDL2 CONFIG REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
-message(sdl: ${SDL2_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME}
-        PRIVATE
-        $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
-        $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
-        )
+target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES})
 
 
 # DirectX12
