@@ -14,6 +14,8 @@ find_package(fmt CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt-header-only)
 
 find_package(SDL2 CONFIG REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS})
+message(sdl: ${SDL2_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
         $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
@@ -115,6 +117,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 # Set compiler options
 #target_compile_options(${PROJECT_NAME} PRIVATE -Wall -pedantic)
+
 
 
 # PCH
